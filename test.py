@@ -13,7 +13,7 @@ spec.integration_time_micros(10000)
 while(1):
     try:
         plt.clf()
-        plt.scatter(spec.wavelengths(), spec.intensities())
+        plt.plot(spec.wavelengths(), spec.intensities())
         plt.draw()
         print "draw"
         plt.pause(0.001)
