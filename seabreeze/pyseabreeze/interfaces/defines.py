@@ -25,6 +25,7 @@ ModelNames = {
     0x2000: 'JAZ',
     0x4000: 'STS',
     0x4004: 'QEPRO',
+    0x4200: 'SPARK',
     0x5000: 'VENTANA',
 }
 ProductIds = list(ModelNames.keys())
@@ -50,6 +51,7 @@ DarkPixels = {
     'STS'	  : [],
     'QEPRO'	  : list(range(0, 4)) + list(range(1040, 1044)),
     'VENTANA'	  : [],
+    'SPARK'     : [],
 }
 
 
@@ -87,6 +89,7 @@ EndPoints= {
      'STS'	   : _EMDUAL,
      'QEPRO'	   : _EMDUAL,
      'VENTANA'	   : _EMVENT,
+     'SPARK'        : _EMFPGA,
 }
 
 
@@ -178,6 +181,8 @@ TriggerModes = {
        'SOFTWARE'     : 1,
        'EXT_HW'       : 3,
         },
+        'SPARK'	   : dict(),
+        
 }
 
 

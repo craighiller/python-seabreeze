@@ -19,6 +19,7 @@ from .spectrometer import (
                             SpectrometerFeatureSTS,
                             SpectrometerFeatureQEPRO,
                             SpectrometerFeatureVENTANA,
+                            SpectrometerFeatureSPARK,
                           )
 
 from .wavelength import WavelengthCoefficientsEEPromFeature
@@ -316,6 +317,19 @@ class VENTANA(SpectrometerFeatureVENTANA,
     _INTEGRATION_TIME_BASE = 1
     _MAX_PIXEL_VALUE = 65535
 
+class SPARK(SpectrometerFeatureSPARK,
+              ThermoElectricFeatureOBP,
+                 NonlinearityCoefficientsOBPFeature,
+                 NoEEPromFeature,
+                 NoShutterFeature,
+                 NotImplementedWrapper):
+    _ENDPOINT_MAP = EndPoints['SPARK']
+    _PIXELS = 1024   # FIXME
+    _RAW_SPECTRUM_LEN = (1024 * 2)  # XXX: No Sync byte!
+    _INTEGRATION_TIME_MIN = 1000
+    _INTEGRATION_TIME_MAX = 655350000
+    _INTEGRATION_TIME_BASE = 1
+    _MAX_PIXEL_VALUE = 65535
 
 USBInterfaces = {
     0x1002: USB2000,
@@ -336,6 +350,7 @@ USBInterfaces = {
     0x2000: JAZ,
     0x4000: STS,
     0x4004: QEPRO,
+    0x4200: SPARK,
     0x5000: VENTANA,
 }
 

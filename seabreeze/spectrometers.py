@@ -86,7 +86,9 @@ class Spectrometer(object):
         if hasattr(self, '_dev') and lib.device_is_open(getattr(self, '_dev')):
             lib.device_close(getattr(self, '_dev'))
         self._dev = device
+        print "about to open"
         lib.device_open(self._dev)
+        print "opened, now getting default info"
         # get default information
         self._serial = self._dev.serial
         self._model = self._dev.model
@@ -103,10 +105,12 @@ class Spectrometer(object):
         self._fidnc = feature.add('nonlinearity_coeffs')  # Added
         self._fidsl = feature.add('stray_light_coeffs')
         # get additional information
+        print "get additional info"
         self._pixels = lib.spectrometer_get_formatted_spectrum_length(self._dev, self._fidsp)
         self._minimum_integration_time_micros = (
                 lib.spectrometer_get_minimum_integration_time_micros(self._dev, self._fidsp))
         # get wavelengths
+        print "get wavelengths"
         self._wavelengths = numpy.zeros((self._pixels,), dtype=numpy.double)
         transfered_N = 0
         while True:
@@ -115,9 +119,14 @@ class Spectrometer(object):
             if transfered_N >= self._pixels:
                 break
         # get dark pixel indices
+        print "get dark pixel indicies"
+        
         self._dark = lib.spectrometer_get_electric_dark_pixel_indices(self._dev, self._fidsp)
         self._has_dark_pixels = True if self._dark.size > 0 else False
         # get nonlinearity coefficients
+        print "get nonlinearity"
+        
+        
         try:
             sbnc = lib.nonlinearity_coeffs_get(self._dev, self._fidnc)
             self._nc = numpy.poly1d(sbnc[::-1])

@@ -2,7 +2,7 @@
 SEABREEZE_FILE="seabreeze-3.0.7.zip"
 
 SEABREEZE_FOLDER=$(basename $SEABREEZE_FILE .zip)
-SEABREEZE_URL="http://sourceforge.net/projects/seabreeze/files/SeaBreeze"
+SEABREEZE_URL="http://downloads.sourceforge.net/project/seabreeze/SeaBreeze/source/"
 
 if [ ! -f $SEABREEZE_FILE ]; then
     echo -e "# SEABREEZE: downloading $SEABREEZE_FILE"
@@ -23,3 +23,4 @@ cd ..
 
 echo -e "# SEABREEZE: installing to /usr/local/lib"
 sudo install "$SEABREEZE_FOLDER/lib/libseabreeze.so" /usr/local/lib/
+

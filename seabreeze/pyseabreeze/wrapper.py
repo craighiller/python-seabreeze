@@ -25,6 +25,7 @@ class SeaBreezeDevice(object):
 
 
 def initialize():
+    print "init"
     # reset all devices on load
     match = lambda dev: (dev.idVendor == defines.VendorId and
                          dev.idProduct in defines.ProductIds)
